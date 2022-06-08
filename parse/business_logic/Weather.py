@@ -1,5 +1,6 @@
 import requests
 import Keys
+import numpy as np
 
 
 def choose_day(data):
@@ -71,5 +72,50 @@ def weather():
     return days_info
 
 
+def day_recomendation():
+    # days_info = weather()
+    days_info = np.array([['2022-06-09', 'ночь', 15, ' небольшая облачность ясно переменная облачность'],
+                          ['2022-06-09', 'день', 22, ' облачно с прояснениями небольшой дождь пасмурно'],
+                          ['2022-06-10', 'ночь', 15, ' небольшая облачность ясно переменная облачность'],
+                          ['2022-06-10', 'день', 22, ' облачно с прояснениями небольшой дождь пасмурно'],
+                          ['2022-06-11', 'ночь', 15, ' небольшая облачность ясно переменная облачность'],
+                          ['2022-06-11', 'день', 22, ' облачно с прояснениями небольшой дождь пасмурно'],
+                          ['2022-06-12', 'ночь', 15, ' небольшая облачность ясно переменная облачность'],
+                          ['2022-06-12', 'день', 22, ' облачно с прояснениями небольшой дождь пасмурно'],
+                          ['2022-06-13', 'ночь', 15, ' небольшая облачность ясно переменная облачность'],
+                          ['2022-06-13', 'день', 22, ' облачно с прояснениями небольшой дождь пасмурно']])
+
+    rating = [0 for _ in range(len(days_info))]
+    good_description_set = {'ясно', 'солнце'}
+    bad_description_set = {'облачно', 'пасмурно', 'дождь', 'снегопад'}
+
+    for i in range(len(days_info)):
+        if days_info[i][1] == 'день':
+            if days_info[i, 2] == max(list(days_info[:, 2])):
+                rating[i] += 1
+
+            for x in good_description_set:
+                if x in days_info[i][3]:
+                    rating[i] += 1
+
+            for x in bad_description_set:
+                if x in days_info[i][3]:
+                    rating[i] -= 1
+
+        else:
+            rating[i] -= 10
+
+    max_index = 0
+    for i in range(len(rating)):
+        if rating[i] == max(rating):
+            max_index = i
+            break
+
+    best_day = days_info[max_index]
+    days_info, best_day = days_info.tolist(), best_day.tolist()
+    days_info.remove(best_day)
+    return best_day, days_info
+
+
 if __name__ == '__main__':
-    print(weather())
+    print(day_recomendation())

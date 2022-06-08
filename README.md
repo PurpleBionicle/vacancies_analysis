@@ -1,9 +1,9 @@
 # vacancies_analysis
 
 <h3>APIs: </h3>
-- hh (vacancies)
-- openweather
-- fixer (exchange rates)
+- hh (vacancies) </br>
+- openweather </br>
+- fixer (exchange rates)</br>
 </br>
 Model of vacancies: </br>
 
