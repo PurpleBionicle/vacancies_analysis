@@ -20,3 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('parse.urls')),
 ]
+
+handler404 = "mysite.views.page_not_found_view"
