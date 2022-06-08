@@ -1,1 +1,2 @@
 Django~=3.2.10
+requests~= 2.7.0
