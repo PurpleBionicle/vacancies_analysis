@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/parse.css' %}?{% now " U
-    " %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/parse.css' %}?{% now " U" %}">
 </head>
 <body>
 
@@ -29,7 +28,8 @@
                 <form action="/vacancy_list/" method="get">
                     <input id="vacancy_name" type="text" name="vacancy_name" class="type-1">
                 </form>
-
+                    1 USD = {{usd}} RUB <br>
+                    1 EUR = {{euro}} RUB
                 </p>
             </div>
         </div>
