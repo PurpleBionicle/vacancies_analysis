@@ -22,29 +22,27 @@ def choose_day(data):
 
 
 def duration(data, temperature, description, k):
-    temp = {'ночь': 0, 'день': 0}
-    time = ['ночь', 'день']
-    time_description = {'ночь': '', 'день': ''}
+    temp = {'день': 0}
+    time = ['день']
+    time_description = {'день': ''}
     night_count = 0
 
     for i in range(len(data)):
-        if int(data[i]) <= 6:
+        if int(data[i]) < 6:
             night_count += 1
 
-            temp['ночь'] += int(temperature[i])
-            if description[i] not in time_description['ночь']:
-                time_description['ночь'] += ' ' + description[i]
         else:
             temp['день'] += int(temperature[i])
             if description[i] not in time_description['день']:
                 time_description['день'] += ' ' + description[i]
 
-    if temp['ночь'] != 0:
-        temp['ночь'] //= night_count
+    # if temp['ночь'] != 0:
+    #     temp['ночь'] //= night_count
 
     if temp['день'] != 0:
         temp['день'] //= len(data) - night_count
-    return time[k], temp[time[k]], time_description[time[k]]
+
+    return time[0], temp[time[0]], time_description[time[0]]
 
 
 def weather():
@@ -73,8 +71,10 @@ def weather():
                 break
 
         for i in range(2):
-            timer, temp, desc = duration(time, temperature, description, i)
-            days_info.append([day, timer, str(temp), desc])
+
+            if i != 0:
+                timer, temp, desc = duration(time, temperature, description, i)
+                days_info.append([day, timer, str(temp), desc])
 
     return days_info
 
@@ -114,7 +114,7 @@ def day_recomendation():
     # convert to class
     days_info_in_class = []
     days_info.remove(best_day)
-    best_day_class = Day(best_day[0],best_day[1],best_day[2],best_day[3])
+    best_day_class = Day(best_day[0], best_day[1], best_day[2], best_day[3])
     for day in days_info:
         day_class = Day(day[0], day[1], day[2], day[3])
         days_info_in_class.append(day_class)
@@ -124,4 +124,5 @@ def day_recomendation():
 
 if __name__ == '__main__':
     best_day, other_days = day_recomendation()
-    print(best_day.day)
+    for day in other_days:
+        print(day.temp)

@@ -4,18 +4,69 @@
     <title>Vacancy list</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/parse.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/parse.css' %}?{% now " U
+    " %}">
 </head>
 <body>
-The day we recommend you go for an interview:
-<br>
-<div>
-    date: {{ best_day.day }} <br>
-    Temperature: {{ best_day.temp }} <br>
-    Description: {{ best_day.desc }} <br>
-</div>
 
-<!--  Weather on other days : {{ other_days }}-->
 
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 col-sm-6">
+            <div class="serviceBox">
+                <div class="service-icon">
+                    <i class="fa fa-money"></i>
+                </div>
+                <h3 class="title"> What job are you looking for?</h3>
+                <p class="description">
+
+                <form action="/vacancy_list/" method="get">
+                    <input id="vacancy_name" type="text" name="vacancy_name" class="type-1">
+                </form>
+
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="serviceBox">
+                <div class="service-icon">
+                    <i class="fa fa-newspaper-o"></i>
+                </div>
+                <h3 class="title">The day we recommend you go for an interview:</h3>
+                <p class="description">
+                    <a> date: {{ best_day.day }} <br> </a>
+                    Temperature: {{ best_day.temp }} °C <br>
+                    Description: {{ best_day.desc }} <br>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="serviceBox">
+                <div class="service-icon">
+                    <i class="fa fa-user-secret"></i>
+                </div>
+                <h3 class="title">Weather on other days</h3>
+                <p class="description">
+                    {% for day in other_days %}
+
+                    <a> date: {{ day.day }} <br></a>
+                    Temperature: {{ day.temp }} °C<br>
+                    Description: {{ day.desc }} <br>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+
+    </div><!-- /.row -->
+</div><!-- /.container -->
 </body>
 </html>
+
