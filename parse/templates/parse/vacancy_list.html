@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="{% static 'css/parse.css' %}">
 </head>
 <body>
-<a href=""> День, в который мы рекомендуем вам идти на собеседование: {{ best_day }}</a>
+The day we recommend you go for an interview:
 <br>
-<a href=""> Погода в остальные дни : {{ other_days }}</a>
+<div>
+    date: {{ best_day.day }} <br>
+    Temperature: {{ best_day.temp }} <br>
+    Description: {{ best_day.desc }} <br>
+</div>
+
+<!--  Weather on other days : {{ other_days }}-->
+
 </body>
 </html>

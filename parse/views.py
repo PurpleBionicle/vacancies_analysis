@@ -11,4 +11,4 @@ def vacancy_list(request):
     # current_vacancy.salary = 100
     # current_vacancy.skills = 'Python'
 
-    return render(request, 'parse/vacancy_list.html', {'best_day': best_day , 'other_days': other_days })
+    return render(request, 'parse/vacancy_list.html', {'best_day': best_day, 'other_days': other_days })
