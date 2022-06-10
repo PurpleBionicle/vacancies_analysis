@@ -8,7 +8,7 @@
 
 <img alt="Telegram" src="https://img.shields.io/badge/nikitosk_a-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" />
 <br>
-# vacancies_analysis
+<h1> vacancies_analysis</h1> 
 
 A fairly simple django job parser. A set of vacancies,
 taking into account salaries in 3 currencies (rubles, euros, US dollars).
