@@ -8,10 +8,10 @@ from .business_logic.Vacancy_analysis import *
 
 def vacancy_list(request):
     best_day, other_days = day_recomendation()
-    currency, usd, euro = course_transfer(1)
+    # currency, usd, euro = course_transfer(1)
 
     return render(request, 'parse/vacancy_list.html', {'best_day': best_day, 'other_days': other_days,
-                                                       'euro': euro, 'usd': usd})
+                                                       'euro': 1, 'usd': 1})
 
 
 def search(request):

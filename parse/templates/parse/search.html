@@ -7,18 +7,70 @@
 <body>
 
 
-<style>body {
+<style>
+    body {
 
         background: url(https://bootstraptema.ru/images/bg/bg-4.png)
-    } </style>
+    }
+
+    .nasimnaya_knopka {
+  margin: 10%;
+  text-align: center;
+}
+
+.stylistics_knopkam {
+  display: inline-block;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 18px;
+  height: 100px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  text-shadow: 0 1px 0 #312c2c;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.stylistics_knopkam:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.stylistics_knopkam:focus {
+  outline: none;
+}
+
+.stylistics_knopkam.maiden-9 {
+  background-image: linear-gradient(to right, #169ed6, #3479f1, #1fbdf3, #4f8de6);
+  box-shadow: 0 4px 15px 0 rgba(52, 120, 222, 0.75);
+}
+
+
+</style>
 
 {% for vacancy in vacancies %}
 <br>
+<div class="nasimnaya_knopka">
+
+  <button class="stylistics_knopkam maiden-9">
     Vacancy: {{ vacancy.name }} <br>
+          </button>
+</div>
     Description: {{ vacancy.description }} <br>
     Salary: {{ vacancy.salary }} <br>
     Skills: {{ vacancy.skills_name }} <br>
 {% endfor %}
+
 
 </body>
 </html>

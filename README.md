@@ -4,6 +4,10 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+![](https://img.shields.io/tokei/lines/github/88888812/vacancies_analysis)
+
+<img alt="Telegram" src="https://img.shields.io/badge/nikitosk_a-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" />
+<br>
 # vacancies_analysis
 
 A fairly simple django job parser. A set of vacancies,
@@ -12,15 +16,19 @@ And also makes a selection of the main skills for the vacancies you are looking
 for. According to the weather api, the site recommends the day for the interview
 with the best weather, because good weather cheers you up.
 <h3>APIs: </h3>
-
+  
 * hh (vacancies) </br>
 * openweather </br>
 * fixer (exchange rates)</br>
   </br>
+  ![](pictures/main.png)
+  ![](pictures/vacancy.png)
+  ![](pictures/404.png)
+
   Model of vacancies: </br>
 
-company | job title | salary | skills  | location |
------- |    ------ |    ----|---------| ---- |
+name | description | salary | skills_name  | 
+------ |    ------ |    ----|---------| 
 
 <br>
 Some my recomendation :<br>
