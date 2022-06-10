@@ -13,9 +13,9 @@ for. According to the weather api, the site recommends the day for the interview
 with the best weather, because good weather cheers you up.
 <h3>APIs: </h3>
 
-- hh (vacancies) </br>
-- openweather </br>
-- fixer (exchange rates)</br>
+* hh (vacancies) </br>
+* openweather </br>
+* fixer (exchange rates)</br>
   </br>
   Model of vacancies: </br>
 
@@ -23,5 +23,8 @@ company | job title | salary | skills  | location |
 ------ |    ------ |    ----|---------| ---- |
 
 <br>
+Some my recomendation :<br>
+* json understandable view  - https://jsoneditoronline.org/#left=local.risequ&right=local.hubowi <br>
+
 P.S. 404 page taken from an open source :
 http://seo-design.net/design/beautifully-designed-404-error-pages

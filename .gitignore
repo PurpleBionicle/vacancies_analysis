@@ -8,3 +8,5 @@ db.sqlite3
 .env
 parse/business_logic/Keys.py
 mysite/settings.py
+parse/business_logic/json_files
+parse/business_logic/json_vacancy
