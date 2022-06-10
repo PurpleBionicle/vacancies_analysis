@@ -2,11 +2,12 @@ import requests
 import json
 import os
 import time
+import shutil
 
 
-def get_page(page=0):
+def get_page(page=0, name_vacancy=0):
     params = {
-        'text': 'NAME:Аналитик',  # name of vacancies
+        'text': f'NAME:{name_vacancy}',  # name of vacancies
         'area': 1,  # Moscow
         'page': page,  # index page
         'per_page': 20  # vacancies per page
@@ -18,11 +19,12 @@ def get_page(page=0):
     return data
 
 
-def collect_pages(pages):
+def collect_pages(pages, name_vacancy):
     for i in range(pages):
-        json_vacancy = json.loads(get_page(i))
+        json_vacancy = json.loads(get_page(i, name_vacancy))
 
-        next_file_name = 'json_files/{}.json'.format(len(os.listdir('json_files/')))
+        next_file_name = 'parse/business_logic/json_files/1.json'\
+            .format(len(os.listdir('parse/business_logic/json_files/')))
 
         file = open(next_file_name, mode='w', encoding='utf8')
         file.write(json.dumps(json_vacancy, ensure_ascii=False))
@@ -37,30 +39,29 @@ def collect_pages(pages):
 
 
 def vacancy():
-    for file in os.listdir('json_files/'):
-        f = open('json_files/{}'.format(file), encoding='utf8')
+    for file in os.listdir('parse/business_logic/json_files/'):
+        f = open('parse/business_logic/json_files/1.json'.format(file), encoding='utf8')
         json_file = f.read()
         f.close()
 
         json_vacancy = json.loads(json_file)
-
+        path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'json_vacancy')
+        shutil.rmtree(path)
+        os.mkdir(path)
         for vacancy in json_vacancy['items']:
-
             request_ = requests.get(vacancy['url'])
             data = request_.content.decode()
             request_.close()
 
-            filename =  'json_vacancy/{}.json'.format(vacancy['id'])
-            f = open (filename,mode='w',encoding='utf8')
+            filename = 'parse/business_logic/json_vacancy/{}.json'.format(vacancy['id'])
+            f = open(filename, mode='w', encoding='utf8')
             f.write(data)
             f.close()
-
 
         time.sleep(0.25)
         print('Вакансии собраны')
 
 
-
 if __name__ == '__main__':
-    collect_pages(1)
+    collect_pages(1, 'python')
     vacancy()

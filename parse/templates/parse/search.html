@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vacancy</title>
+</head>
+<body>
+
+
+<style>body {
+
+        background: url(https://bootstraptema.ru/images/bg/bg-4.png)
+    } </style>
+
+{% for vacancy in vacancies %}
+<br>
+    Vacancy: {{ vacancy.name }} <br>
+    Description: {{ vacancy.description }} <br>
+    Salary: {{ vacancy.salary }} <br>
+    Skills: {{ vacancy.skills_name }} <br>
+{% endfor %}
+
+</body>
+</html>
+
+
