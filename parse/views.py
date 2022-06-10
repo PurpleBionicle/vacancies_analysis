@@ -6,8 +6,12 @@ from .business_logic.Course import course_transfer
 
 
 def vacancy_list(request):
+
     best_day, other_days = day_recomendation()
-    currency, usd, euro = course_transfer(1)
+    # currency, usd, euro = course_transfer(1)
+
+    def sim():
+        pass
 
     # current_vacancy = Vacancies()
     # current_vacancy.salary = 100
@@ -21,4 +25,4 @@ def vacancy_list(request):
         message = 'You submitted an empty form.'
 
     return render(request, 'parse/vacancy_list.html', {'best_day': best_day, 'other_days': other_days,
-                                                       'euro': euro, 'usd': usd})
+                                                       'euro': 1, 'usd': 1})
