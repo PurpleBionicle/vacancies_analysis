@@ -3,12 +3,18 @@ from parse.business_logic import Keys
 
 
 class values():
+    "Будем выводить зарплаты в euro и usd"
     def __init__(self, value_usd, value_eur):
         self.usd = value_usd
         self.eur = value_eur
 
 
 def get_course(currency, to_currency):
+    """
+    :param currency: в какой валюте изначально
+    :param to_currency: в какую перевести
+    :return: Численный перевод в другую валюту
+    """
     global rate
     # print("Валюты вводятся по английски заглавными буквами")
     # print("Пример: USD , EUR , RUB ")
@@ -17,11 +23,14 @@ def get_course(currency, to_currency):
     # other = input("Курс  какой валюты:")
     API_key = Keys.course
 
+    "получим курс исходной валюты через api относительно Euro"
     response_base = requests.get(
         f"http://data.fixer.io/api/latest?access_key={API_key}&base=EUR&symbols={currency}")
 
     base_json = response_base.json()
 
+    "получим курс валюты через api относительно Euro, если она отличается от Euro"
+    "Таким образом, снижаем число API запросов, так как они ограничены"
     if to_currency != 'EUR':
         response_other = requests.get(
             f"http://data.fixer.io/api/latest?access_key={API_key}&base=EUR&symbols={to_currency}")
@@ -39,12 +48,13 @@ def get_course(currency, to_currency):
 
     else:
         rate = base_json["rates"][str(currency)]
-
+    "Нашли отношение курсов валют"
     print(f"1 {currency} = {rate} {to_currency}")
     return rate
 
 
 def course_transfer(value):
+    "Переводит нашу зарплату в другие валюты"
     # предполагаем ,что в рублях
     value_usd = value / get_course('USD', 'RUB')
     value_euro = value / get_course('EUR', 'RUB')

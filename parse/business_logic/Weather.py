@@ -4,6 +4,10 @@ import numpy as np
 
 
 class Day():
+    """
+    temp - температура в этот день
+    desc - описание погоды в этот день
+    """
     def __init__(self, day, timer, temp, desc):
         self.day = day
         self.timer = timer
@@ -12,6 +16,7 @@ class Day():
 
 
 def choose_day(data):
+    """Собираем числа из json структур"""
     days = []
     count = 0
     for i in data['list']:
@@ -22,6 +27,7 @@ def choose_day(data):
 
 
 def duration(data, temperature, description, k):
+    "Вычленение среднедневной температуры без учета ночи"
     temp = {'день': 0}
     time = ['день']
     time_description = {'день': ''}
@@ -46,8 +52,12 @@ def duration(data, temperature, description, k):
 
 
 def weather():
+    """
+    :return: Получение погоды на N дня через API
+    """
     API_key = Keys.weather
     city_id = 524894  # Moscow
+    "Получение json структуры"
     parameters = {'id': city_id, 'units': 'metric', 'lang': 'ru', 'APPID': API_key}
 
     response = requests.get("http://api.openweathermap.org/data/2.5/forecast",
@@ -56,11 +66,12 @@ def weather():
         raise Exception("ERROR invalid request")
 
     data = response.json()
+    "Соберем числа из json"
     days = choose_day(data)
     # print(choose_day(data))
     temperature, description, time = [], [], []
     days_info = []
-
+    "Соберем остальную информацию из json"
     for day in days:
         for i in data['list']:
             if i['dt_txt'][:10] == day:
@@ -80,17 +91,22 @@ def weather():
 
 
 def day_recomendation():
+    "Основная ф-ция - По полученным дням выбирает лучший"
     days_info = np.array(weather())
 
     rating = [0 for _ in range(len(days_info))]
+    "Определим хорошие характеристики дня и плохие"
     good_description_set = {'ясно', 'солнце'}
     bad_description_set = {'облачно', 'пасмурно', 'дождь', 'снегопад'}
 
     for i in range(len(days_info)):
+        "Если случайно ночь осталась убираем ее"
         if days_info[i][1] == 'день':
+            "1 балл получаем самый теплый день, который не теплее 25 градусов"
             if days_info[i, 2] == max(list(days_info[:, 2])) and int(days_info[i, 2]) <= 25:
                 rating[i] += 1
 
+            "1 балл за каждую хорошую характеристику дня и минус 1 за каждую плохую"
             for x in good_description_set:
                 if x in days_info[i][3]:
                     rating[i] += 1
